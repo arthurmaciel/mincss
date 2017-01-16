@@ -1,0 +1,222 @@
+[[tags: egg]]
+
+== mincss
+
+[[toc:]]
+
+=== Description
+
+mincss provides a set of SXML rules for the minimalistic CSS styling library [[http://mincss.com|mincss]].
+
+=== Author
+
+[[/users/arthurmaciel|Arthur Maciel]]
+
+=== Requirements
+
+Requires [[srfi-1]], [[sxml-transforms]] and [[sxpath]] eggs.
+
+=== Documentation
+
+<syntax>(btn (@ (href "#")) "Testing")</syntax>
+Produces:
+'(a (@ (href "#") (class "btn")) "Testing")
+
+<syntax>(btn-a (@ (href "#")) "Testing")</syntax>
+Produces:
+'(a (@ (href "#") (class "btn btn-a")) "Testing")
+
+<syntax>(btn-a-sm (@ (href "#")) "Testing")</syntax>
+Produces:
+'(a (@ (href "#") (class "btn btn-a btn-sm")) "Testing")
+
+<syntax>(btn-b (@ (href "#")) "Testing")</syntax>
+Produces:
+'(a (@ (href "#") (class "btn btn-b")) "Testing")
+
+<syntax>(btn-b-sm (@ (href "#")) "Testing")</syntax>
+Produces:
+'(a (@ (href "#") (class "btn btn-b btn-sm")) "Testing")
+
+<syntax>(btn-c (@ (href "#")) "Testing")</syntax>
+Produces:
+'(a (@ (href "#") (class "btn btn-c")) "Testing")
+
+<syntax>(btn-c-sm (@ (href "#")) "Testing")</syntax>
+Produces:
+'(a (@ (href "#") (class "btn btn-c btn-sm")) "Testing")
+
+<syntax>(addon "Testing")</syntax>
+Produces:
+'(span (@ (class "addon")) "Testing")
+
+<syntax>(table "Testing")</syntax>
+Produces:
+'(table (@ (class "table")) "Testing")
+
+<syntax>(ico "Testing")</syntax>
+Produces:
+'(i (@ (class "ico")) "Testing")
+
+<syntax>(container "Testing")</syntax>
+Produces:
+'(div (@ (class "container")) "Testing")
+
+<syntax>(row "Testing")</syntax>
+Produces:
+'(div (@ (class "row")) "Testing")
+
+<syntax>(c1 "Testing")</syntax>
+Produces:
+'(div (@ (class "col c1")) "Testing")
+
+<syntax>(c2 "Testing")</syntax>
+Produces:
+'(div (@ (class "col c2")) "Testing")
+
+<syntax>(c3 "Testing")</syntax>
+Produces:
+'(div (@ (class "col c3")) "Testing")
+
+<syntax>(c4 "Testing")</syntax>
+Produces:
+'(div (@ (class "col c4")) "Testing")
+
+<syntax>(c5 "Testing")</syntax>
+Produces:
+'(div (@ (class "col c5")) "Testing")
+
+<syntax>(c6 "Testing")</syntax>
+Produces:
+'(div (@ (class "col c6")) "Testing")
+
+<syntax>(c7 "Testing")</syntax>
+Produces:
+'(div (@ (class "col c7")) "Testing")
+
+<syntax>(c8 "Testing")</syntax>
+Produces:
+'(div (@ (class "col c8")) "Testing")
+
+<syntax>(c9 "Testing")</syntax>
+Produces:
+'(div (@ (class "col c9")) "Testing")
+
+<syntax>(c10 "Testing")</syntax>
+Produces:
+'(div (@ (class "col c10")) "Testing")
+
+<syntax>(c11 "Testing")</syntax>
+Produces:
+'(div (@ (class "col c11")) "Testing")
+
+<syntax>(c12 "Testing")</syntax>
+Produces:
+'(div (@ (class "col c12")) "Testing")
+
+<syntax>(msg "Testing")</syntax>
+Produces:
+'(div (@ (class "msg")) "Testing")
+
+<syntax>(nav ((a (@ (href "1") (class "pagename current")) "1") (a (@ (href "2")) "2") (a (@ (href "3")) "3")))</syntax>
+Produces:
+'((nav (@ (class "nav") (tabindex "-1") (onclick "this.focus()"))
+      ((a (@ (href "1") (class "pagename current"))
+          "1")
+       (a (@ (href "2"))
+          "2")
+       (a (@ (href "3"))
+          "3"))
+ (button (@ (class "btn-close btn btn-sm"))
+         "x"))
+
+==== Examples
+<enscript highlight="scheme">
+(use mincss)
+
+ ((sxml->html)
+ '(html
+   (head
+    (meta-viewport) ; for responsive design
+    (link-cdn-mincss)
+    (title "mincss test page with CHICKEN"))
+   (body
+    (nav
+     ((a (@ (href "Home") (class "pagename current"))
+         "Home")
+      (a (@ (href "docs"))
+         "Docs")
+      (a (@ (href "help"))
+         "Help")))
+    (container
+     (row
+      ((c5 "Left side! (or up depending on screen)")
+       (c7 "Right side! (or down depending on screen)")))))))
+
+=>
+</enscript>
+
+<enscript highlight="html">
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/min/1.5/min.min.css" type="text/css" />
+    <title>mincss test page with CHICKEN</title>
+  </head>
+  <body>
+    <nav class="nav" tabindex="-1" onclick="this.focus()">
+      <a href="Home" class="pagename current">Home</a>
+      <a href="docs">Docs</a>
+      <a href="help">Help</a>
+    </nav>
+    <button class="btn-close btn btn-sm">x</button>
+    <div class="container">
+      <div class="row">
+        <div class="col c5">Left side! (or up depending on screen)</div>
+        <div class="col c7">Right side! (or down depending on screen)</div>
+      </div>
+    </div>
+  </body>
+</html>
+</enscript>
+
+=== Changelog
+
+* 0.1 Initial version
+
+=== License
+
+  Copyright (c) 2017, Arthur Maciel
+  All rights reserved.
+  
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are
+  met:
+  
+  Redistributions of source code must retain the above copyright
+  notice, this list of conditions and the following disclaimer.
+  
+  Redistributions in binary form must reproduce the above copyright
+  notice, this list of conditions and the following disclaimer in the
+  documentation and/or other materials provided with the distribution.
+  
+  Neither the name of the author nor the names of its contributors may
+  be used to endorse or promote products derived from this software
+  without specific prior written permission.
+  
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+  FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+  COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+  HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+  OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+
+

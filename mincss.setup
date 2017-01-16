@@ -1,0 +1,7 @@
+(compile -s -O2 mincss.scm -j mincss)
+(compile -s -O2 mincss.import.scm)
+
+(install-extension
+  'mincss
+  '("mincss.so" "mincss.import.so")
+  '((version "0.1")))
